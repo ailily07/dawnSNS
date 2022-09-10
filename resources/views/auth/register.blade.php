@@ -2,25 +2,67 @@
 
 @section('content')
 
-{!! Form::open() !!}
+{!! Form::open(['url' => '/register']) !!}
+    <h2>新規ユーザー登録</h2>
 
-<h2>新規ユーザー登録</h2>
+    <div class="form-group">
+        {{ Form::label('UserName') }}<br>
+        {{ Form::text('username', null, ['class' => 'input', 'placeholder' => 'dawntown']) }}<br>
+        @if ($errors->has('username'))
+            <div class="alert alert-danger">
+                <p>{{ $errors->first('username') }}</p>
+            </div>
+        @endif
+    </div>
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+    <div class="form-group">
+        {{ Form::label('MailAdress') }}<br>
+        {{ Form::email('mail', null, ['class' => 'input', 'placeholder' => 'dawn@mail.com']) }}<br>
+        @if ($errors->has('mail'))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 
-{{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+    <div class="form-group">
+        {{ Form::label('Password') }}<br>
+        {{ Form::password('password', ['class' => 'input', 'placeholder' => '4～12文字で入力']) }}<br>
+        @if ($errors->has('password'))
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    </div>
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+    <div class="form-group">
+        {{ Form::label('Password confirm') }}<br>
+        {{ Form::password('password_confirmation', ['class' => 'input', 'placeholder' => '4～12文字で入力']) }}<br>
+        @if ($errors->has('password_confirmation'))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+    <div class="form-group btn register">
+        {{ Form::submit('REGISTER') }}
+    </div>
 
-{{ Form::submit('登録') }}
-
-<p><a href="/login">ログイン画面へ戻る</a></p>
+    <!-- 戻るボタン -->
+    <p><a href="/login">ログイン画面へ戻る</a></p>
 
 {!! Form::close() !!}
 

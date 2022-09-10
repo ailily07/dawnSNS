@@ -1,9 +1,57 @@
-@chasert "utf-8";
+@charset "utf-8";
 
 html{
     height: 100%;
 }
+
 body{
     height: 100%;
     background: #3C4767;
+    color:#fff;
+    padding-top:100px;
+}
+header{
+    text-align: center;
+    margin-bottom:50px;
+    font-size:1.7rem;
+}
+
+#container{
+    width:250px;
+    margin:0 auto;
+    padding:30px;
+    background-color:#0000001a;
+    border-radius: 5px;
+}
+
+#container h2,
+#container p{
+    text-align:center;
+    margin:0 0 50px 0;
+}
+#container p{
+    margin:20px 0 0;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group .input{
+    width:97%;
+    height:30px;
+    border-radius: 5px;
+    margin-top:5px;
+    font-size: 1.1rem;
+    padding-left:3%;
+}
+
+.btn{
+    text-align: right;
+    height:30px;
+    margin:35px 0 40px;
+}
+
+a{
+    color: #fff;
 }

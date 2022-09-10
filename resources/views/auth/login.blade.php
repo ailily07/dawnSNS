@@ -2,18 +2,26 @@
 
 @section('content')
 
-{!! Form::open() !!}
+{!! Form::open(['url' => '/login']) !!}
 
-<p>DAWNSNSへようこそ</p>
+  <h2>DAWNのSNSへようこそ</h2>
 
-{{ Form::label('e-mail') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
-{{ Form::label('password') }}
-{{ Form::password('password',['class' => 'input']) }}
+  <div class="form-group">
+    {{ Form::label('MailAddress') }}<br>
+    {{ Form::email('mail',null,['class' => 'input']) }}<br>
+  </div>
 
-{{ Form::submit('ログイン') }}
+  <div class="form-group">
+    {{ Form::label('Password') }}<br>
+    {{ Form::password('password',['class' => 'input']) }}<br>
+  </div>
 
-<p><a href="/register">新規ユーザーの方はこちら</a></p>
+  <div class="form-group btn login">
+    {{ Form::submit('LOGIN') }}
+  </div>
+
+  <!-- 新規登録画面へ飛ぶ -->
+  <p><a href="/register">新規ユーザーの方はこちら</a></p>
 
 {!! Form::close() !!}
 
