@@ -52,5 +52,11 @@ class LoginController extends Controller
         return view("auth.login");
     }
 
+    public function logout(){
+        //ログイン画面表示
+        //　↓ログイン認証も消した上で戻らないとまたログインできてしまう？
+        return view("auth.login");
+    }
+
 
 }

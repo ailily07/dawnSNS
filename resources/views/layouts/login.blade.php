@@ -22,18 +22,22 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
+            <h1>
+                <a href="/top"><img src="images/main_logo.png"></a>
+            </h1>
+            <div class="menu">
+                <input type="checkbox" id="accordion">
+                <label class="accordion-header" for="accordion">
+                    <p>{{ '〇〇' }}さん<img class="arrow" src="images/arrow.png"></p>
+                    <div class="user-icon"><img src="images/icons/dawn.png"></div>
+                </label>
+                <ul class="accordion-inner">
+                    <li><a href="/top">HOME</a></li>
+                    <li><a href="/profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-            </div>
-        </div>
+            </div><!-- option -->
+        </label>
     </header>
     <div id="row">
         <div id="container">

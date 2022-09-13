@@ -16,12 +16,12 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('MailAdress') }}<br>
+        {{ Form::label('MailAddress') }}<br>
         {{ Form::email('mail', null, ['class' => 'input', 'placeholder' => 'dawn@mail.com']) }}<br>
         @if ($errors->has('mail'))
             <div class="alert alert-danger">
                 <ul>
-                    @foreach ($errors->all() as $error)
+                    @foreach ($errors->all('mail') as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -35,7 +35,7 @@
         @if ($errors->has('password'))
         <div class="alert alert-danger">
             <ul>
-                @foreach ($errors->all() as $error)
+                @foreach ($errors->all('password') as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
@@ -49,7 +49,7 @@
         @if ($errors->has('password_confirmation'))
             <div class="alert alert-danger">
                 <ul>
-                    @foreach ($errors->all() as $error)
+                    @foreach ($errors->all('password') as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
