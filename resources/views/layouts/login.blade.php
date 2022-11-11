@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
-    <link rel="icon" href="画像URL" sizes="16x16" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="32x32" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="48x48" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
+    <link rel="icon" href="images/icons" sizes="16x16" type="image/png" />
+    <link rel="icon" href="images/icons" sizes="32x32" type="image/png" />
+    <link rel="icon" href="images/icons" sizes="48x48" type="image/png" />
+    <link rel="icon" href="images/icons" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
@@ -23,46 +23,54 @@
     <header>
         <div id = "head">
             <h1>
-                <a href="/top"><img src="images/main_logo.png"></a>
+                <a href="/top"><img src="{{ asset('images/main_logo.png') }}"></a>
             </h1>
             <div class="menu">
                 <input type="checkbox" id="accordion">
-                <label class="accordion-header" for="accordion">
-                    <p>{{ '〇〇' }}さん<img class="arrow" src="images/arrow.png"></p>
-                    <div class="user-icon"><img src="images/icons/dawn.png"></div>
+                <label class="accordion-header flex" for="accordion">
+                    <p class="login-user">
+                        {{ Auth::user()->username }}さん
+                    </p>
+                    <div class="user-icon">
+                        <img src="{{ asset('storage/icons/' . Auth::user()->images) }}">
+                    </div>
                 </label>
                 <ul class="accordion-inner">
                     <li><a href="/top">HOME</a></li>
-                    <li><a href="/profile">プロフィール編集</a></li>
+                    <li><a href="/edit-profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-            </div><!-- option -->
-        </label>
+            </div><!-- menu -->
+        </div>
     </header>
-    <div id="row">
+    <div id="main">
         <div id="container">
             @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p class="username">
+                    {{ Auth::user()->username }}さんの</p>
+                <div class="follows">
+                    <div class="row">
+                        <p>フォロー数</p>
+                        <p>{{ $follow_count }}名</p>
+                    </div>
+                    <p class="btn follow-list-btn"><a href="/follow-list">フォローリスト</a></p>
+                    <div class="row">
+                        <p>フォロワー数</p>
+                        <p>{{ $follower_count }}名</p>
+                    </div>
+                    <p class="btn follower-list-btn"><a href="/follower-list">フォロワーリスト</a></p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
-                </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn search"><a href="/search">ユーザー検索</a></p>
         </div>
-    </div>
+    </div><!-- main -->
     <footer>
+        <p>@DAWN_AiMatsuda</p>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('/js/my.js') }}"></script>
 </body>
 </html>

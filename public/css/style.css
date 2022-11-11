@@ -1,11 +1,58 @@
 @charset "utf-8";
 
 /**************** 共通 ****************/
-html{
-}
 body{
+    width: 1400px;
+    margin: 0 auto;
 }
-
+.flex,
+#head,
+#main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn,
+.btn a{
+    display: block;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+.user-icon img{
+    border-radius: 100%;
+}
+.follow-btn,
+.un-follow-btn{
+    margin-left: auto;
+    color: #000;
+}
+.follow-btn input,
+.un-follow-btn input{
+    width: 150px;
+    padding: 15px;
+    background-color: cornflowerblue;
+}
+.un-follow-btn input{
+    background-color: brown;
+}
+input{
+    display: block;
+    border: none;
+}
+th{
+    text-align: left;
+    align-items: flex-start;
+}
+button{
+    border: none;
+    background-color: #fff;
+}
+textarea{
+    text-align: left;
+    resize: none;
+}
 
 /**************** HEADER ****************/
 header{
@@ -15,28 +62,39 @@ header{
 header a{
     color:#000;
 }
-#head{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#head h1{
+    flex: 0 0 77%;
+    padding-left: 3%;
 }
 /* アコーディオンメニュー */
 #head .menu{
     position: relative;
-    width: 200px;
+    flex: 0 0 20%;
 }
 #head #accordion{
     display: none;
 }
 #head .accordion-header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 5px;
     cursor: pointer;
+    justify-content: flex-end;
 }
-#head .accordion-header .user-icon img{
-    border-radius: 100%;
+#head .accordion-header .login-user{
+    position: relative;
+    padding-right: 5px;
+}
+#head .accordion-header .login-user::after{
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 8px;
+    right: -15px;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(45deg);
+}
+#head .accordion-header .user-icon{
+    margin-right: 15%;
+    padding-left: 30px;
 }
 #head .accordion-inner{
     height: 0;
@@ -44,7 +102,7 @@ header a{
     overflow: hidden;
     transition: 0.5s;
     position: absolute;
-    top:82px;
+    top:84px;
     right:0;
 }
 #head .accordion-inner li a{
@@ -64,21 +122,323 @@ header a{
 #accordion:checked ~ .accordion-inner{
     height: 155px;
 }
+/**************** HEADER END ****************/
 
-
-/**************** MAIN ****************/
-#row{
-    display: flex;
-    flex-flow: row wrap;
+/**************** MAIN START ****************/
+#main{
+    align-items: flex-start;
 }
+/**** CONTAINER START ****/
 #container{
     flex: 0 0 80%;
+    min-height: 700px;
+    border-right: 1px solid #6C6C6C;
 }
+.top-content{
+    border-bottom: 4px solid rgba(108,108,108,0.3);
+}
+
+/** POSTS START **/
+.tweet-post-box{
+    padding: 20px 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.tweet-post-box .user-icon{
+    margin: 0 20px;
+}
+.tweet-post{
+    width: 70%;
+}
+.post-box{
+    width:80%;
+    height:90px;
+    line-height: 1.5;
+    padding: 15px;
+    border: none;
+    font-size: 1.3em;
+}
+.post-btn{
+    width: 40px;
+    height: 40px;
+}
+.tweet-list-box{
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 5%;
+    border-bottom: 1px solid rgba(108,108,108,0.3);
+}
+.tweet-list-box .user-icon{
+    flex: 0 0 10%;
+}
+.tweet-content{
+    flex: 0 0 90%;
+}
+.tweet-top{
+    padding: 15px 0;
+}
+.tweet{
+    margin-bottom: 15px;
+    width: 720px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+.edit-delete{
+    justify-content: flex-end;
+}
+.edit-delete .btn{
+    margin: 0 10px;
+}
+.edit-delete .delete-btn .trash-h{
+    display: none;
+}
+.edit-delete .delete-btn:hover .trash{
+    display: none;
+}
+.edit-delete .delete-btn:hover .trash-h{
+    display: block;
+}
+.edit-modal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(70,70,70,0.3);
+}
+.modal-wrapper{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:45%;
+    height: 30%;
+    padding: 40px 0;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.modal-wrapper textarea{
+    display: block;
+    width: 85%;
+    height: 150px;
+    margin: 0 auto 20px;
+    border: #777 1px solid;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 1.5em;
+}
+.modal-wrapper .btn{
+    display: block;
+    margin: 0 10% 0 auto;
+}
+/** POSTS END **/
+/** FOLLOW-LIST START **/
+.follows-wrapper{
+    padding: 20px 0;
+    width: 90%;
+    margin: 0 auto;
+}
+h2{
+    font-size: 1.8em;
+    margin-bottom: 30px;
+}
+.follows-list{
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 50px;
+}
+.follows-list .user-icon{
+    margin: 0 10px;
+}
+/** FOLLOW-LIST END **/
+
+/** FOLLOWER-LIST START **/
+/** FOLLOWER-LIST END **/
+
+/** SEARCH START **/
+/* top-content */
+.search-form{
+    justify-content: flex-start;
+    padding: 10px 0;
+}
+.search-box{
+    width:400px;
+    height: 50px;
+    margin-right:10px;
+    padding-left: 1em;
+    border-radius: 5px;
+    border: solid 2px rgba(108,108,108,0.6);
+}
+::placeholder{
+    color: rgba(108,108,108,0.5);
+}
+.search-btn{
+    width: 40px;
+    height:40px;
+}
+/* bottom-content */
+.search-user-list,
+.search-form-box{
+    width: 75%;
+    margin: 0 auto 0 10%;
+    padding: 20px 0;
+}
+.search-user{
+    padding: 15px 0;
+}
+.search-user .user-icon{
+    margin: 0 2em;
+}
+/** SEARCH END **/
+
+/** USER PROFILE START **/
+.user-profile-box{
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0;
+    align-items: flex-start;
+}
+.user-profile-box .user-icon{
+    margin: 0 40px;
+}
+.user-profile-box .user-profile{
+    line-height: 2.5em;
+    font-size: 1.1em;
+}
+.user-profile-box .user-profile th{
+    width: 100px;
+}
+.user-profile-box .user-profile .user-bio{
+    white-space: pre-wrap;
+    line-height: normal;
+    font-size: 0.9em;
+}
+.user-profile-box .btn{
+    margin-top: auto;
+}
+/** USER PROFILE END **/
+
+/** MY PROFILE START **/
+.edit-profile-box{
+    width: 60%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 60px 0;
+}
+.edit-profile-box .user-icon{
+    flex: 0 0 15%;
+}
+.edit-profile{
+    flex: 0 0 85%;
+}
+.edit-profile-table{
+    margin-bottom: 30px;
+}
+.edit-profile-table tr{
+    display: block;
+    margin-bottom: 40px;
+}
+.edit-profile-table th{
+    width: 200px;
+}
+.edit-profile-table td{
+    overflow: hidden;
+}
+.edit-profile-table .pro-input{
+    height: 30px;
+    width: 230px;
+    padding-left: 10px;
+    background-color: #eee;
+    border-bottom: 1px solid #666;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+.edit-profile-table .bio{
+    width: 350px;
+    height: 60px;
+    padding: 10px;
+}
+.edit-profile-table .pro-icon{
+    width: 350px;
+    height: 150px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #eee;
+    border-bottom: 1px solid #666;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+.edit-profile-table .pro-icon .pro-input{
+    display: inline-block;
+    border: none;
+    background-color: #fff;
+}
+.update-btn{
+    display: block;
+    width: 100px;
+    height: 40px;
+    background-color: #669900;
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+/** MY PROFILE END **/
+
+/**** CONTAINER END ****/
+/**** SIDEBAR START ****/
 #side-bar{
-    flex: 0 0 19%;
-    border-left: 1px solid #6C6C6C;
+    flex: 0 0 20%;
 }
+#side-bar #confirm{
+    padding: 0 5px 0 20px;
+    border-bottom: 0.5px solid rgba(108,108,108,0.4);
 
+    margin-bottom: 40px;
+}
+#confirm .username{
+    padding: 25px 0;
+}
+#confirm .follows{
+    width: 90%;
+    margin: 0 auto;
+}
+#confirm .row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.follow-list-btn,
+.follower-list-btn{
+    width: 65%;
+    margin: 0 0 20px auto;
+}
+.follow-list-btn a,
+.follower-list-btn a,
+#side-bar .search{
+    background:#3C4767;
+    line-height: 45px;
+    font-size: 0.9rem;
+}
+#side-bar .search{
+    width: 50%;
+    margin: 0 auto;
+}
+/**** SIDEBAR END ****/
 
-
-/**************** FOOTER ****************/
+/**************** MAIN END ****************/
+/**************** FOOTER START ****************/
+footer{
+    height: 40px;
+    padding-top: 60px;
+    background:#3C4767;
+    color:#fff;
+    text-align: center;
+}
+/**************** FOOTER END ****************/

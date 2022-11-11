@@ -23,7 +23,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Where to redirect users after lセッション
      *
      * @var string
      */
@@ -46,15 +46,21 @@ class LoginController extends Controller
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
             if(Auth::attempt($data)){
+                //パスワードの文字数カウント
+                session()->put('passwordCount', strlen($data['password']));
+
                 return redirect('/top');
             }
         }
+
         return view("auth.login");
     }
 
     public function logout(){
+        //ファザードでログインユーザーのセッション破棄
+        Auth::logout();
+
         //ログイン画面表示
-        //　↓ログイン認証も消した上で戻らないとまたログインできてしまう？
         return view("auth.login");
     }
 
